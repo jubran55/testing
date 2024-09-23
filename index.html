@@ -1,0 +1,134 @@
+<html lang="ar" dir="rtl">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Food Nutrition Tracker</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+
+  <!-- Form for filtering food -->
+  <form id="filterForm">
+    <div class="form-group">
+      <label for="typeDropdown">النوع:</label>
+      <select id="typeDropdown" class="form-control">
+        <option value="">حدد النوع</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="foodDropdown">الاسم:</label>
+      <select id="foodDropdown" class="form-control">
+        <option value="">حدد الطعام</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="weightInput">الوزن (غرام):</label>
+      <input type="number" id="weightInput" class="form-control" placeholder="أدخل الوزن بالغرامات">
+    </div>
+
+    <div class="d-grid gap-2">
+      <button type="submit" class="btn btn-primary" style="margin-top: 10px;">Submit</button>
+      <button type="button" class="btn btn-success" style="margin-top: 10px;" data-bs-toggle="modal" data-bs-target="#newFoodModal">
+        إدخال طعام جديد
+      </button>
+    </div>
+  </form>
+
+  <!-- Modal for adding new food -->
+  <div class="modal fade" id="newFoodModal" tabindex="-1" aria-labelledby="newFoodModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="newFoodModalLabel">إدخال طعام جديد</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form id="newFoodForm">
+            <div class="mb-3">
+              <label for="newFoodType" class="form-label">نوع الطعام</label>
+              <select id="newFoodType" class="form-control">
+                <option value="">اختر نوع الطعام</option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label for="newFoodName" class="form-label">اسم الطعام</label>
+              <input type="text" class="form-control" id="newFoodName" placeholder="أدخل اسم الطعام">
+            </div>
+            <div class="mb-3">
+              <label for="newFoodCalories" class="form-label">السعرات الحرارية لكل 100 غرام</label>
+              <input type="number" class="form-control" id="newFoodCalories" placeholder="أدخل السعرات الحرارية">
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">إغلاق</button>
+          <button type="button" class="btn btn-primary" id="saveNewFoodBtn">حفظ الطعام الجديد</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Food Table -->
+  <table id="foodTable" class="table table-striped table-hover" style="margin-top: 20px;">
+    <thead>
+      <tr>
+        <th>الجدول الغذائي</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+    <tfoot>
+      <tr>
+        <td><strong>مجموع السعرات:</strong> <span id="totalCalories">0</span></td>
+      </tr>
+      <tr>
+        <td><strong>مجموع البروتين:</strong> <span id="totalProtein">0</span></td>
+      </tr>
+      <tr>
+        <td><strong>مجموع الكارب:</strong> <span id="totalCarbs">0</span></td>
+      </tr>
+      <tr>
+        <td><strong>مجموع الدهون:</strong> <span id="totalFats">0</span></td>
+      </tr>
+      <tr>
+        <td><strong>مجموع الألياف:</strong> <span id="totalDietaryFiber">0</span></td>
+      </tr>
+    </tfoot>
+  </table>
+
+  <!-- Load jQuery and Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Link to external JavaScript -->
+  <script src="scripts.js"></script>
+  <!-- Modal for editing food entry -->
+  <div class="modal fade" id="editFoodModal" tabindex="-1" aria-labelledby="editFoodModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="editFoodModalLabel">Edit Food Entry</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form id="editFoodForm">
+            <div class="mb-3">
+              <label for="editWeightInput" class="form-label">New Weight (غرام):</label>
+              <input type="number" id="editWeightInput" class="form-control" placeholder="Enter new weight">
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary" id="saveEditBtn">Save changes</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+
+</html>
